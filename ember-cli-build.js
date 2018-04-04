@@ -1,8 +1,12 @@
-/* eslint-env node */
+'use strict';
+
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  var app = new EmberAddon(defaults, {
+  let app = new EmberAddon(defaults, {
+    'ember-composable-helpers': {
+      only: ['intersect', 'filter-by', 'object-at', 'map-by']
+    }
     // Add options here
   });
 

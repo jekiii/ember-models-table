@@ -1,0 +1,35 @@
+<h4>Filtering
+  <small>simple table</small>
+</h4>
+<p class="alert alert-info">
+  <code>First name</code> uses column values for filter options.<br>
+  <code>Last name</code> has a predefined list of options.<br>
+  <code>Age</code> uses a custom filter-function combined with a predefined list of options.
+</p>
+{{models-table
+  data=data
+  columns=columns
+}}
+
+<div class="row">
+  <div class="col-md-6">
+    <p><code>columns</code></p>
+    <pre><code class="language-javascript">{{to-string this "columns"}}</code></pre>
+  </div>
+  <div class="col-md-6">
+    <p>Component usage</p>
+    <pre><code class="language-handlebars">\{{models-table
+  data=data
+  columns=columns
+}}</code></pre>
+  </div>
+</div>
+
+<h4>Filtering
+  <small>server paginated table</small>
+</h4>
+<p class="alert alert-info"><code>First name</code> and <code>Last name</code> have a predefined lists of options.</p>
+{{models-table-server-paginated
+  data=model
+  columns=columnsForServerTable
+}}

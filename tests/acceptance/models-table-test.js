@@ -1,10 +1,14 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import $ from 'jquery';
 
 let firstUser;
 moduleForAcceptance('Acceptance | models table', {
   beforeEach() {
     firstUser = server.createList('user', 10)[0];
+  },
+  afterEach() {
+    server.shutdown();
   }
 });
 

@@ -1,14 +1,15 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import {set} from '@ember/object';
+import {getOwner} from '@ember/application';
 
-const {set, on, getOwner} = Ember;
+export default Controller.extend({
 
-export default Ember.Controller.extend({
+  c: null,
 
-  c: {},
-
-  onInit: on('init', function() {
+  init() {
     let owner = getOwner(this);
     set(this, 'c', owner.lookup('component:models-table'));
-  })
+    this._super(...arguments);
+  }
 
 });

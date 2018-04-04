@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import {computed} from '@ember/object';
 import DS from 'ember-data';
-
-const {computed} = Ember;
 
 export default DS.Model.extend({
 
@@ -10,9 +8,12 @@ export default DS.Model.extend({
   lastName: DS.attr('string'),
   age: DS.attr('number'),
   city: DS.attr('string'),
+  country: DS.attr('string'),
 
   cityWithHtml: computed('city', function () {
     return `<i>${this.get('city')}</i>`;
-  })
+  }),
+
+  canBuyBeer: computed.gt('age', 20)
 
 });

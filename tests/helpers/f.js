@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import O from '@ember/object';
+import {faker} from 'ember-cli-mirage';
 
-const O = Ember.Object;
-const {
-  A
-} = Ember;
+const firstNames = faker.definitions.name.first_name.slice(0, 10).sort();
+const lastNames = faker.definitions.name.last_name.slice(0, 10).sort();
+
+const {random} = faker;
 
 // from http://stackoverflow.com/questions/14766951/convert-digits-into-words-with-javascript
 function numberToWord(n) {
@@ -46,8 +48,8 @@ function numberToWord(n) {
 }
 
 function generateContent(length) {
-  var startFrom = arguments.length > 1 ? arguments[1] : 0;
-  var ret = A([]);
+  const startFrom = arguments.length > 1 ? arguments[1] : 0;
+  const ret = A([]);
   for (let i = startFrom; i < startFrom + length; i++) {
     ret.pushObject(O.create({
       index: i,
@@ -55,7 +57,11 @@ function generateContent(length) {
       reversedIndex: startFrom + length - i,
       indexWithHtml: `<i>${i}</i>`,
       someWord: numberToWord(i),
-      id: i
+      id: i,
+      firstName: random.arrayElement(firstNames.slice(0, -2)),
+      lastName: random.arrayElement(lastNames.slice(0, -2)),
+      age: 11 + random.number(42),
+      rand: !!(i % 2)
     }));
   }
   return ret;
@@ -65,4 +71,4 @@ function generateColumns(columnNames) {
   return A(A(columnNames).map(columnName => {return {title: columnName, propertyName: columnName}; }));
 }
 
-export { generateContent, generateColumns };
+export { generateContent, generateColumns, firstNames, lastNames };
